@@ -3,37 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TechPulse — Tu Portal de Tecnología</title>
+<title>TechPulse — Noticias & Opinión</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <script>
 /* ============================================================
-   ✏️  ZONA DE EDICIÓN — CAMBIÁ TODO ACÁ ARRIBA
+   ✏️  ZONA DE EDICIÓN — CAMBIÁ LOS LINKS Y TEXTOS ACÁ
    ============================================================ */
 
 // 🌐 DATOS DEL SITIO
 var TITULO_WEB = "TechPulse";
-var SLOGAN     = "Noticias de Tecnología e IA";
 
-// 🚀 NOTICIA DESTACADA (La grande de la izquierda)
-var DESTACADA_IMAGEN = "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000"; // ← LINK DE FOTO
-var DESTACADA_TITULO = "El impacto de la IA en el trabajo diario: ¿Evolución o reemplazo?";
-var DESTACADA_DESC   = "Analizamos cómo las nuevas herramientas de inteligencia artificial están cambiando la productividad en las empresas modernas.";
-var DESTACADA_LINK   = "https://google.com"; // ← LINK A DONDE LLEVA
-var DESTACADA_TAG    = "INTELIGENCIA ARTIFICIAL";
+// 🚀 NOTICIA DESTACADA
+var DESTACADA_IMAGEN = "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000";
+var DESTACADA_TITULO = "El futuro de la IA: ¿Estamos listos?";
+var DESTACADA_LINK   = "https://google.com";
 
-// 📰 NOTICIA 2 (Derecha arriba)
+// 📺 SECCIÓN DE YOUTUBE (OPINIÓN)
+var YT_IMAGEN = "https://images.unsplash.com/photo-1541873676947-9952e76d42b6?q=80&w=500"; // Imagen de fondo para el video
+var YT_TITULO = "MI OPINIÓN: Por qué dejé de usar Windows"; // Título llamativo
+var YT_LINK   = "https://youtube.com/tu-video-aca"; // ← TU LINK DE YOUTUBE
+var YT_DURACION = "12:45"; // Duración del video
+
+// 📰 OTRAS NOTICIAS
 var N2_IMAGEN = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=500";
-var N2_TITULO = "Nuevos procesadores para laptops en 2026";
+var N2_TITULO = "Nuevos procesadores 2026";
 var N2_LINK   = "https://google.com";
-var N2_TAG    = "HARDWARE";
-
-// 📰 NOTICIA 3 (Derecha abajo)
-var N3_IMAGEN = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500";
-var N3_TITULO = "Guía completa: Cómo armar tu primer set-up de streaming";
-var N3_LINK   = "https://google.com";
-var N3_TAG    = "GUÍA";
 
 /* ============================================================
    ⚠️ NO TOCAR NADA DE ACÁ PARA ABAJO
@@ -45,128 +41,105 @@ var N3_TAG    = "GUÍA";
     --bg: #0a0a0f;
     --surface: #111118;
     --accent: #00e5ff;
+    --youtube: #ff0000;
     --text: #e8e8f0;
     --muted: #7a7a9a;
   }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0; }
+  .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 
-  header {
-    padding: 20px;
-    border-bottom: 1px solid #222;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-
-  .main-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-  }
-
+  .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
   @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
 
-  .card {
-    background: var(--surface);
-    border-radius: 16px;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    transition: 0.3s;
-    border: 1px solid #222;
+  .card { 
+    background: var(--surface); border-radius: 16px; overflow: hidden; 
+    text-decoration: none; color: inherit; display: flex; flex-direction: column; 
+    transition: 0.3s; border: 1px solid #222; position: relative;
   }
-
-  .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .card:hover { border-color: var(--accent); transform: translateY(-3px); }
 
   .img-box { height: 300px; overflow: hidden; position: relative; }
   .img-box img { width: 100%; height: 100%; object-fit: cover; }
 
+  /* Estilo Especial YouTube */
+  .yt-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
+  }
+  .play-btn {
+    background: var(--youtube); color: white; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; box-shadow: 0 0 20px rgba(255,0,0,0.5);
+  }
+
   .card-body { padding: 20px; }
-  .tag { font-size: 10px; font-weight: bold; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .tag { font-size: 10px; font-weight: bold; color: var(--accent); text-transform: uppercase; }
+  .tag-yt { color: var(--youtube); }
   h2, h3 { margin: 10px 0; font-family: 'Syne', sans-serif; }
 
-  .side-col { display: flex; flex-direction: column; gap: 20px; }
-  .small-card .img-box { height: 150px; }
-  .small-card h3 { font-size: 1rem; }
-
-  footer { text-align: center; padding: 40px; color: var(--muted); border-top: 1px solid #222; margin-top: 50px; }
+  footer { text-align: center; padding: 40px; color: var(--muted); border-top: 1px solid #222; }
 </style>
 </head>
 <body>
 
-<header>
-  <a href="#" class="logo" id="logo-text">LOGO</a>
-  <nav style="color:var(--muted); font-size: 0.8rem;">Modo: Administrador Fácil</nav>
+<header style="padding: 20px; text-align: center; border-bottom: 1px solid #222;">
+  <h1 id="logo-text" style="color:var(--accent); font-family:'Syne'; margin:0;"></h1>
 </header>
 
 <div class="container">
   <div class="main-grid">
     <div id="render-destacada"></div>
 
-    <div class="side-col">
+    <div class="side-col" style="display: flex; flex-direction: column; gap: 20px;">
+      
+      <div id="render-youtube"></div>
+
       <div id="render-n2"></div>
-      <div id="render-n3"></div>
+
     </div>
   </div>
 </div>
 
-<footer id="footer-text"></footer>
+<footer>
+  <p>© 2026 TechPulse - Contenido de Tecnología y Opinión</p>
+</footer>
 
 <script>
-  // DIBUJAR CONTENIDO AUTOMÁTICAMENTE
   document.getElementById("logo-text").innerText = TITULO_WEB;
-  document.getElementById("footer-text").innerHTML = "© 2026 " + TITULO_WEB + " | " + SLOGAN;
 
-  // Render noticia grande
+  // Render Destacada
   document.getElementById("render-destacada").innerHTML = `
     <a href="${DESTACADA_LINK}" class="card" target="_blank">
       <div class="img-box"><img src="${DESTACADA_IMAGEN}"></div>
       <div class="card-body">
-        <span class="tag">${DESTACADA_TAG}</span>
+        <span class="tag">DESTACADA</span>
         <h2>${DESTACADA_TITULO}</h2>
-        <p style="color:var(--muted)">${DESTACADA_DESC}</p>
       </div>
     </a>`;
 
-  // Render noticias pequeñas
-  document.getElementById("render-n2").innerHTML = renderSmall(N2_LINK, N2_IMAGEN, N2_TAG, N2_TITULO);
-  document.getElementById("render-n3").innerHTML = renderSmall(N3_LINK, N3_IMAGEN, N3_TAG, N3_TITULO);
+  // Render YouTube Especial
+  document.getElementById("render-youtube").innerHTML = `
+    <a href="${YT_LINK}" class="card" target="_blank" style="border-color: var(--youtube)">
+      <div class="img-box" style="height: 180px;">
+        <img src="${YT_IMAGEN}">
+        <div class="yt-overlay"><div class="play-btn">▶</div></div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-yt">● VIDEO OPINIÓN (${YT_DURACION})</span>
+        <h3 style="font-size: 1.1rem;">${YT_TITULO}</h3>
+      </div>
+    </a>`;
 
-  function renderSmall(link, img, tag, title) {
-    return `
-      <a href="${link}" class="card small-card" target="_blank">
-        <div class="img-box"><img src="${img}"></div>
-        <div class="card-body">
-          <span class="tag">${tag}</span>
-          <h3>${title}</h3>
-        </div>
-      </a>`;
-  }
+  // Render N2
+  document.getElementById("render-n2").innerHTML = `
+    <a href="${N2_LINK}" class="card" target="_blank">
+      <div class="img-box" style="height: 120px;"><img src="${N2_IMAGEN}"></div>
+      <div class="card-body">
+        <span class="tag">NOTICIAS</span>
+        <h3 style="font-size: 1rem;">${N2_TITULO}</h3>
+      </div>
+    </a>`;
 </script>
 
 </body>
