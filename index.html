@@ -3,33 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TechPulse — Noticias & Opinión</title>
+<title>TechPulse — Noticias, Opinión y Guías</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
 <script>
 /* ============================================================
-   ✏️  ZONA DE EDICIÓN — CAMBIÁ LOS LINKS Y TEXTOS ACÁ
+   ✏️  ZONA DE EDICIÓN — CONFIGURÁ TU SITIO AQUÍ ARRIBA
    ============================================================ */
 
-// 🌐 DATOS DEL SITIO
+// 🌐 1. DATOS DEL SITIO
 var TITULO_WEB = "TechPulse";
 
-// 🚀 NOTICIA DESTACADA
+// 👤 2. QUIÉNES SOMOS (Tus datos)
+var SOBRE_NOSOTROS_TITULO = "Sobre Nosotros";
+var SOBRE_NOSOTROS_TEXTO  = "Hola, soy [Tu Nombre]. En este sitio comparto mi visión sobre la tecnología y la IA, buscando acercar las novedades más importantes de forma clara y honesta.";
+
+// 🚀 3. NOTICIA DESTACADA (La grande)
 var DESTACADA_IMAGEN = "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000";
 var DESTACADA_TITULO = "El futuro de la IA: ¿Estamos listos?";
-var DESTACADA_LINK   = "https://google.com";
+var DESTACADA_LINK   = "#"; // Pegá aquí el link de la noticia
 
-// 📺 SECCIÓN DE YOUTUBE (OPINIÓN)
-var YT_IMAGEN = "https://images.unsplash.com/photo-1541873676947-9952e76d42b6?q=80&w=500"; // Imagen de fondo para el video
-var YT_TITULO = "MI OPINIÓN: Por qué dejé de usar Windows"; // Título llamativo
-var YT_LINK   = "https://youtube.com/tu-video-aca"; // ← TU LINK DE YOUTUBE
-var YT_DURACION = "12:45"; // Duración del video
+// 📺 4. SECCIÓN DE YOUTUBE (OPINIÓN)
+var YT_IMAGEN = "https://images.unsplash.com/photo-1541873676947-9952e76d42b6?q=80&w=500";
+var YT_TITULO = "MI OPINIÓN: Por qué la IA no reemplazará tu trabajo";
+var YT_LINK   = "#"; // Pegá aquí tu link de YouTube
+var YT_DURACION = "10:15";
 
-// 📰 OTRAS NOTICIAS
-var N2_IMAGEN = "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=500";
-var N2_TITULO = "Nuevos procesadores 2026";
-var N2_LINK   = "https://google.com";
+// 🔗 5. PUNTOS DE INTERÉS (Links para completar después)
+var PUNTOS_INTERES = [
+    { nombre: "Guías de Compra", link: "#" },
+    { nombre: "Mejores Apps 2026", link: "#" },
+    { nombre: "Tutoriales Tech", link: "#" },
+    { nombre: "Cursos Gratis", link: "#" }
+];
 
 /* ============================================================
    ⚠️ NO TOCAR NADA DE ACÁ PARA ABAJO
@@ -49,7 +56,8 @@ var N2_LINK   = "https://google.com";
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; margin: 0; }
   .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
 
-  .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+  header { padding: 20px; text-align: center; border-bottom: 1px solid #222; }
+  .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
   @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
 
   .card { 
@@ -59,31 +67,39 @@ var N2_LINK   = "https://google.com";
   }
   .card:hover { border-color: var(--accent); transform: translateY(-3px); }
 
-  .img-box { height: 300px; overflow: hidden; position: relative; }
+  .img-box { height: 320px; overflow: hidden; position: relative; }
   .img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-  /* Estilo Especial YouTube */
   .yt-overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
   }
   .play-btn {
-    background: var(--youtube); color: white; width: 60px; height: 60px;
+    background: var(--youtube); color: white; width: 50px; height: 50px;
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; box-shadow: 0 0 20px rgba(255,0,0,0.5);
+    box-shadow: 0 0 20px rgba(255,0,0,0.5);
   }
 
   .card-body { padding: 20px; }
-  .tag { font-size: 10px; font-weight: bold; color: var(--accent); text-transform: uppercase; }
-  .tag-yt { color: var(--youtube); }
   h2, h3 { margin: 10px 0; font-family: 'Syne', sans-serif; }
 
-  footer { text-align: center; padding: 40px; color: var(--muted); border-top: 1px solid #222; }
+  /* Puntos de Interés */
+  .interes-section { margin-top: 40px; padding: 20px; background: #111118; border-radius: 16px; border: 1px solid #222; }
+  .interes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+  .interes-link { background: #1a1a25; padding: 15px; border-radius: 10px; text-decoration: none; color: var(--accent); font-weight: bold; border: 1px solid transparent; transition: 0.3s; }
+  .interes-link:hover { border-color: var(--accent); background: #222; }
+
+  /* Newsletter */
+  .newsletter { background: linear-gradient(135deg, #1a1a25, #0a0a0f); padding: 40px; border-radius: 16px; text-align: center; margin-top: 40px; border: 1px solid #333; }
+  .newsletter input { padding: 12px; border-radius: 8px; border: none; width: 250px; margin-right: 10px; background: #222; color: white; }
+  .newsletter button { padding: 12px 25px; border-radius: 8px; border: none; background: var(--accent); color: black; font-weight: bold; cursor: pointer; }
+
+  footer { text-align: center; padding: 40px; color: var(--muted); border-top: 1px solid #222; margin-top: 40px; }
 </style>
 </head>
 <body>
 
-<header style="padding: 20px; text-align: center; border-bottom: 1px solid #222;">
+<header>
   <h1 id="logo-text" style="color:var(--accent); font-family:'Syne'; margin:0;"></h1>
 </header>
 
@@ -92,54 +108,64 @@ var N2_LINK   = "https://google.com";
     <div id="render-destacada"></div>
 
     <div class="side-col" style="display: flex; flex-direction: column; gap: 20px;">
-      
       <div id="render-youtube"></div>
-
-      <div id="render-n2"></div>
-
+      
+      <div class="card" style="padding: 20px; background: #1a1a25;">
+        <h3 id="render-nosotros-tit" style="margin-top:0; color: var(--accent);"></h3>
+        <p id="render-nosotros-txt" style="color:var(--muted); font-size: 0.9rem;"></p>
+      </div>
     </div>
+  </div>
+
+  <div class="interes-section">
+    <h3 style="font-family:'Syne'; margin:0;">Puntos de Interés</h3>
+    <div class="interes-grid" id="render-interes"></div>
+  </div>
+
+  <div class="newsletter">
+    <h3 style="font-family:'Syne'; margin-bottom:10px;">Suscribite al Newsletter</h3>
+    <p style="color:var(--muted); margin-bottom:20px;">Recibí las mejores noticias tecnológicas en tu correo.</p>
+    <input type="email" placeholder="Tu correo electrónico">
+    <button>Suscribirme</button>
   </div>
 </div>
 
-<footer>
-  <p>© 2026 TechPulse - Contenido de Tecnología y Opinión</p>
-</footer>
+<footer id="render-footer"></footer>
 
 <script>
+  // DIBUJAR TODO
   document.getElementById("logo-text").innerText = TITULO_WEB;
+  document.getElementById("render-nosotros-tit").innerText = SOBRE_NOSOTROS_TITULO;
+  document.getElementById("render-nosotros-txt").innerText = SOBRE_NOSOTROS_TEXTO;
+  document.getElementById("render-footer").innerText = "© 2026 " + TITULO_WEB + " | Desarrollado para el futuro";
 
-  // Render Destacada
+  // Destacada
   document.getElementById("render-destacada").innerHTML = `
     <a href="${DESTACADA_LINK}" class="card" target="_blank">
       <div class="img-box"><img src="${DESTACADA_IMAGEN}"></div>
       <div class="card-body">
-        <span class="tag">DESTACADA</span>
+        <span style="color:var(--accent); font-size:10px; font-weight:bold;">DESTACADA</span>
         <h2>${DESTACADA_TITULO}</h2>
       </div>
     </a>`;
 
-  // Render YouTube Especial
+  // YouTube
   document.getElementById("render-youtube").innerHTML = `
-    <a href="${YT_LINK}" class="card" target="_blank" style="border-color: var(--youtube)">
+    <a href="${YT_LINK}" class="card" target="_blank">
       <div class="img-box" style="height: 180px;">
         <img src="${YT_IMAGEN}">
         <div class="yt-overlay"><div class="play-btn">▶</div></div>
       </div>
       <div class="card-body">
-        <span class="tag tag-yt">● VIDEO OPINIÓN (${YT_DURACION})</span>
+        <span style="color:var(--youtube); font-size:10px; font-weight:bold;">VIDEO OPINIÓN (${YT_DURACION})</span>
         <h3 style="font-size: 1.1rem;">${YT_TITULO}</h3>
       </div>
     </a>`;
 
-  // Render N2
-  document.getElementById("render-n2").innerHTML = `
-    <a href="${N2_LINK}" class="card" target="_blank">
-      <div class="img-box" style="height: 120px;"><img src="${N2_IMAGEN}"></div>
-      <div class="card-body">
-        <span class="tag">NOTICIAS</span>
-        <h3 style="font-size: 1rem;">${N2_TITULO}</h3>
-      </div>
-    </a>`;
+  // Puntos de Interés
+  document.getElementById("render-interes").innerHTML = PUNTOS_INTERES.map(item => `
+    <a href="${item.link}" class="interes-link">→ ${item.nombre}</a>
+  `).join('');
 </script>
 
 </body>
